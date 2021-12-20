@@ -1,0 +1,29 @@
+body{
+    background-image: 
+    url("");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-attachment: fixed;
+    position: fixed;
+    opacity: .9;
+    width: 100vw;
+    height: 100vh;
+}
+
+.home{
+    background-color: rgb(190, 190, 248);
+    margin-top: 6rem;
+    width: 20%;
+    justify-content: center;
+    position:absolute;
+    display: flex;
+    flex-wrap: wrap;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+.button{
+    margin-top: 4%;
+}

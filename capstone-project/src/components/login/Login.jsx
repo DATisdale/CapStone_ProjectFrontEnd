@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
-import "./LoginForm.css";
+import "./Login.css";
 import axios from 'axios';
-import PropTypes from 'prop-types'
-import { Login } from '@mui/icons-material';
+//import PropTypes from 'prop-types'
+//import { Login } from '@mui/icons-material';
 
-function Login(props){
+function Login(){
     const[email,getEmail]=useState('');
     const[password, getPassword]=useState('');
 
