@@ -3,10 +3,11 @@ import './App.css';
 //import { ThirtyFpsTwoTone } from '@mui/icons-material';
 import jwtDecode from 'jwt-decode';
 import React, {Component} from "react"
-import Login from './components/login/Login';
+//import Login from './components/login/Login';
  //import Register from './components/register/Register'
 // import jwtDecode from 'jwt-decode';
 // import {Switch, Route, Redirect} from "react"
+import Leftsidebar from './components/leftsidebar/Leftsidebar';
 
 class App extends Component {
   constructor(props){
@@ -36,7 +37,7 @@ componetDidMount(){
 render() {
   return(
     <div className = "App">
-      <Login/>
+      <Leftsidebar/>
     </div>
   )
 }
