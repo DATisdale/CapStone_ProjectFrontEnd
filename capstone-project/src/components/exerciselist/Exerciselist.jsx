@@ -1,12 +1,15 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import './Leftsidebar.css'
 
 
-class Leftsidebar extends Component {
+class Exerciselist extends Component {
     constructor(props){
         super(props);
         this.state = {
             exercises:[],
+            armExcercises:[],
+            backExercises:[],
             personalExercises:[]
         }
     }
@@ -24,9 +27,23 @@ async getExercise(){
     }
     let response = await axios.get('https://exercisedb.p.rapidapi.com/exercises',configObject)
     console.log(response.data);
-    this.setState({
-        exercises:response.data
+    let armExcercises = [];
+    let backExercises = [];
+    response.data.map(el =>{
+        if(el.bodyPart == "back"){
+            backExercises.push(el)
+        }
+        else if(el.bodyPart == "arms"){
+            armExcercises.push(el)
+        }
     })
+    this.setState({
+        backExercises: backExercises,
+        armExcercises: armExcercises
+    })
+    // this.setState({
+    //     exercises:response.data
+    // })
 }
 
 addExerciseToList(exercise){
@@ -39,19 +56,21 @@ addExerciseToList(exercise){
 render(){
     return(
         <div>
-            {this.state.exercises.map(exercise =>{
+            {this.state.backExercises.map(exercise =>{
                 return(
                     <div onClick={()=>this.addExerciseToList(exercise)}>
                     <h4>{exercise.name}</h4>
                     <img src={exercise.gifUrl}/>
                     <hr />
                     </div>
-                   
-                )
-            })}
+                    ) })}
+            
         </div>
     )
+
+    
 }
 
 }
-export default Leftsidebar;
+
+export default Exerciselist

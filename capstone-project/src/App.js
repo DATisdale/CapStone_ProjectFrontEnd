@@ -7,7 +7,7 @@ import React, {Component} from "react"
  //import Register from './components/register/Register'
 // import jwtDecode from 'jwt-decode';
 // import {Switch, Route, Redirect} from "react"
-import Leftsidebar from './components/leftsidebar/Leftsidebar';
+import Navbar from './components/navbar/Navbar';
 
 class App extends Component {
   constructor(props){
@@ -37,7 +37,7 @@ componetDidMount(){
 render() {
   return(
     <div className = "App">
-      <Leftsidebar/>
+    <Navbar/>
     </div>
   )
 }
