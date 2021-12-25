@@ -7,6 +7,7 @@ import React, {Component} from "react"
  //import Register from './components/register/Register'
 // import jwtDecode from 'jwt-decode';
 // import {Switch, Route, Redirect} from "react"
+import Logout from './components/logout/Logout';
 import Navbar from './components/navbar/Navbar';
 
 class App extends Component {
@@ -37,7 +38,7 @@ componetDidMount(){
 render() {
   return(
     <div className = "App">
-    <Navbar/>
+   <Navbar/>
     </div>
   )
 }

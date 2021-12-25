@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Menuitems} from "./Menuitems"
+
 import './Navbar.css'
 
 class Navbar extends Component{
@@ -10,6 +10,7 @@ class Navbar extends Component{
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Profile</a></li>
                     <li><a href="#">Exercises</a></li>
+                    <li><a href="#">Progress</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
             </div>

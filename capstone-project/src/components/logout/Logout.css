@@ -1,0 +1,12 @@
+button {
+    display:inline;
+    float:right;
+    margin-right:10px;
+    display:block;
+    padding: 8px 15px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #069;
+    border-right: 1px solid #ccc;
+  }
+
