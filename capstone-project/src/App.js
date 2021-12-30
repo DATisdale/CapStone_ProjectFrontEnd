@@ -1,47 +1,37 @@
-//import logo from './logo.svg';
-import './App.css';
-//import { ThirtyFpsTwoTone } from '@mui/icons-material';
+import React,{Component} from 'react';
+import "./App.css"
+import { Route,Navigate,Routes } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
-import React, {Component} from "react"
-//import Login from './components/login/Login';
- //import Register from './components/register/Register'
-// import jwtDecode from 'jwt-decode';
-// import {Switch, Route, Redirect} from "react"
-import Logout from './components/logout/Logout';
-import Navbar from './components/navbar/Navbar';
+import NavigationBar from './components/navigationbar/NavigationBar';
+import axios from 'axios';
+import Login from './components/login/Login';
+import Register from './components/register/Register';
 
-class App extends Component {
-  constructor(props){
-    super(props);
+class App extends Component{
+  state ={
+    user:''
+  }
+
+
+  componentDidMount() {
     const jwt = localStorage.getItem('token');
     try{
-      const decodedUser= jwtDecode(jwt);
-      this.state={
-        user: decodedUser,
-      }
-    }catch{
-      this.state ={
-        user:null
-      }
+      const user =jwtDecode(jwt);
+      this.setState({user
+      })
+    } catch{
+
     }
   }
-componetDidMount(){
-  const jwt=localStorage.getItem('token')
-  try{
-    const decodedUser=jwtDecode(jwt);
-    this.setState({user:decodedUser});
-
-  }catch{
-
-  }
-}
-render() {
+render(){
+  const user =this.state.user;
   return(
-    <div className = "App">
-   <Navbar/>
-    </div>
+    <div className ="App">
+      {console.log('User',user)}
+      <Register/>
+      </div>
+    
   )
 }
 }
-
-export default App; 
+export default App

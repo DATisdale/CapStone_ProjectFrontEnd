@@ -1,6 +1,6 @@
 body{
     background-image: 
-    url("");
+    url("../img/graham-mansfield-y7ywDXWJ-JU-unsplash.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top;
@@ -10,6 +10,8 @@ body{
     width: 100vw;
     height: 100vh;
     align-items:left;
+    font-family:inherit;
+    
 }
 
 .home{
@@ -27,4 +29,7 @@ body{
 }
 .button{
     margin-top: 4%;
+}
+.text{
+    color: ivory;
 }
