@@ -33,7 +33,7 @@ render(){
   return(
     <div className ="App">
       {console.log('User',user)}
-      <Schedule/>
+      <Register/>
 
       </div>
     
