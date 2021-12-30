@@ -6,6 +6,11 @@ import NavigationBar from './components/navigationbar/NavigationBar';
 import axios from 'axios';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
+import { appBarClasses } from '@mui/material';
+import Schedule from './components/schedule/Schedule';
+import { Switch } from '@mui/material';
+
+
 
 class App extends Component{
   state ={
@@ -28,7 +33,8 @@ render(){
   return(
     <div className ="App">
       {console.log('User',user)}
-      <Register/>
+      <Schedule/>
+
       </div>
     
   )
