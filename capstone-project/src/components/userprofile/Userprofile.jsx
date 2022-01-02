@@ -1,33 +1,21 @@
 import axios from "axios";
-import React, {Component} from "react";
+import React, {useState,useEffect} from "react";
 
-
-class Userprofile extends Component {
-    constructor(props){
-        super(props);
-        this.state={
-            user_id:this.props.user_id,
-            username:this.props.username,
-            email:this.props.email,
-            height:this.props.height,
-            weight:this.props.weight
-        }
-    }
-fetchUserDetails(user_id){
-    // console.log(user_id);
-    axios.get("http://localhost:3000/api/users/user_id")
+const Userprofile = () => {
+    const [name,setName] = useState('')
+    const [height,setHeight] =useState('')
+    const [weight,setWeight] = useState('')
 }
- componentDidMount(){
-     this.fetchUserDetails(this.state.user_id);
- }
 
- render (){
-     return(
-         <div>
-        
-         </div>
+useEffect(()=>{
+    axios.get('http://localhost:5000/api/users/current')
+    .then(res=>{
+        console.log(res)
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+})
 
-     )
- }
-}
-export default Userprofile;
+
+export default Userprofile

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import "./Register.css"
 import axios from 'axios'
+import Schedule from '../schedule/Schedule';
 
 function Register(props){
     const [name,setName]= useState('');
@@ -27,7 +28,9 @@ async function handleSubmit(e){
 }
 
 return(
+    <div>
     <form className = "register" onSubmit={handleSubmit}>
+
         <label>name</label>
         <input value={name} onChange={(event)=>setName(event.target.value)} type='text'/>
 
@@ -47,6 +50,7 @@ return(
         
          <button type = 'submit'>Create User</button>
     </form>
+    </div>
 
     
 )

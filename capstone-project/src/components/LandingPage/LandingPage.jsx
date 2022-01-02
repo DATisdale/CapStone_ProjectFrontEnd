@@ -10,6 +10,7 @@ function LandingPage(props){
   
           return (
               <div>
+                Test
          <button onClick={() => login()}>Login</button>
               </div>
               
