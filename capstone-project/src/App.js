@@ -10,7 +10,7 @@ import Schedule from './components/schedule/Schedule';
 import { BrowserRouter as Router, Routes, Route,  Navigate} from "react-router-dom";
 import LandingPage from './components/LandingPage/LandingPage';
 import Userprofile from  './components/userprofile/Userprofile'
-
+import Alert from './components/alert/Alert'
 
 
 class App extends Component{
@@ -33,7 +33,7 @@ render(){
   const user =this.state.user;
   return(
     <div>
-    <Login/>
+    <Alert/>
     </div>
   )
 }
