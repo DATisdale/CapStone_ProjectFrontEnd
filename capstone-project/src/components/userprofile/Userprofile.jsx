@@ -4,7 +4,7 @@ import NavigationBar from "../navigationbar/NavigationBar"
 import { Avatar } from "@mui/material";
 
 const Userprofile = () => {
-    const [user, getUser] = useState('')
+    const [user, getUser] = useState([]);
     
 
 
@@ -17,7 +17,7 @@ useEffect(()=>{
     .catch(err=>{
         console.log(err)
     })
-}, [])
+});
  
 return (
     <div>

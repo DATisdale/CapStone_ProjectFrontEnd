@@ -31,21 +31,22 @@ return(
     <div>
     <form className = "register" onSubmit={handleSubmit}>
 
+        <h1>Register</h1>< br/> <br/>
         <label>name</label>
         <input value={name} onChange={(event)=>setName(event.target.value)} type='text'/>
-
+<br/>
         <label>Email</label>
         <input value ={email} onChange={(event)=> setEmail(event.target.value)} type = 'text'/>
-
+        <br/>
         <label>Password</label>
         <input value={password} onChange={(event)=>setPassword(event.target.value)} type = 'text'/>
-
+        <br/>
         <label>Height</label>
         <input value={height} onChange={(event)=>setHeight(event.target.value)} type = 'text'/>
-
+        <br/>
         <label>Weight</label>
         <input value={weight} onChange={(event)=>setWeight(event.target.value)} type = 'text'/>
-
+        <br/><br/><br/>
 
         
          <button type = 'submit'>Create User</button>

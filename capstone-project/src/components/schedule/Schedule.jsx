@@ -8,6 +8,8 @@ import axios from 'axios';
 
 function Schedule(props){
     let daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    console.log("***********************************")
+    console.log(props)
    
           return (
            <div>
@@ -49,5 +51,7 @@ function Schedule(props){
            </div>
           );
       }
+
+
       
   export default Schedule;

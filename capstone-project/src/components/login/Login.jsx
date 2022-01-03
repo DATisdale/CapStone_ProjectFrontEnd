@@ -26,22 +26,22 @@ function Login(props){
       
         console.log(response.data);
         localStorage.setItem('token', response.data)
-        window.location = '/';
+        window.location = '/exerciseList';
       
     }
-
-    
   
           return (
-            
             <form className="signup" onSubmit={handlesubmit}>
+              <h1>Sign In</h1><br /><br />
               <label>Username</label>
               <input  onChange={(event) => getEmail(event.target.value)} type='text' />
       
               <label>Password</label>
-              <input  onChange={(event) => getPassword(event.target.value)} type='text' />          
+              <input  onChange={(event) => getPassword(event.target.value)} type='text' /> 
+              <br />         
               <button type='submit'>Log in</button>
-              <Button href="/signup" variant="text">Signup</Button>
+              <Button href="/Register" variant="text">Signup</Button>
+              <br/>
             </form>
           );
       }

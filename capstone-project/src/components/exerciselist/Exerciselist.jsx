@@ -1,6 +1,11 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import { BrowserRouter as Router, Routes, Route,  Navigate, BrowserRouter, Link} from "react-router-dom";
+import Schedule from '../schedule/Schedule';
+import "./Exerciselist.css"
 
+
+var listOfExercises = []
 
 
 class Exerciselist extends Component {
@@ -13,6 +18,7 @@ class Exerciselist extends Component {
             personalExercises:[]
         }
     }
+
 
 
 componentDidMount() {
@@ -46,22 +52,34 @@ async getExercise(){
     // })
 }
 
-addExerciseToList(exercise){
-    console.log(exercise)
+addExerciseToList(exercise, props){
+    listOfExercises.push(exercise)
+    console.log(listOfExercises)
+    console.log(props)
+
 
 }
 
 
 
-render(){
+render(props){
     return(
         <div>
+              <Link to={newTo} >
+         <button >Make Your Schedule</button>
+         </Link><br/><br/><br/>
+            {/* <button onClick={useEffect((()=>{
+                localStorage.clear()
+            },[]))}/> */}
             {this.state.backExercises.map(exercise =>{
                 return(
-                    <div onClick={()=>this.addExerciseToList(exercise)}>
+                    <div>
+                       
+                    <div onClick={()=>this.addExerciseToList(exercise, props)}>
                     <h4>{exercise.name}</h4>
                     <img src={exercise.gifUrl}/>
                     <hr />
+                    </div>
                     </div>
                     ) })}
             
@@ -73,4 +91,10 @@ render(){
 
 }
 
-export default Exerciselist
+const newTo = {
+    pathname: "/Schedule",
+    param: listOfExercises
+
+};
+
+export default Exerciselist;

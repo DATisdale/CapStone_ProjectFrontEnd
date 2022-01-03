@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import "./App.css"
+import { BrowserRouter, Route,Navigate,Routes, Router } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import NavigationBar from './components/navigationbar/NavigationBar';
 import axios from 'axios';
@@ -7,10 +8,11 @@ import Login from './components/login/Login';
 import Register from './components/register/Register';
 import { appBarClasses } from '@mui/material';
 import Schedule from './components/schedule/Schedule';
-import { BrowserRouter as Router, Routes, Route,  Navigate} from "react-router-dom";
+import { Switch } from '@mui/material';
 import LandingPage from './components/LandingPage/LandingPage';
-import Userprofile from  './components/userprofile/Userprofile'
-import Alert from './components/alert/Alert'
+import Exerciselist from './components/exerciselist/Exerciselist'
+import Userprofile from './components/userprofile/Userprofile'
+
 
 
 class App extends Component{
@@ -32,9 +34,22 @@ class App extends Component{
 render(){
   const user =this.state.user;
   return(
-    <div>
-    <Alert/>
-    </div>
+    <BrowserRouter >
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/Register" element={<Register />} />
+        <Route path="/exerciseList" element={<Exerciselist />} />
+        <Route path="/schedule" element={<Schedule />} />
+        <Route path="/Userprofile" element={<Userprofile />} />
+
+
+
+      </Routes>
+      </BrowserRouter>
+
+
+    
   )
 }
 }
