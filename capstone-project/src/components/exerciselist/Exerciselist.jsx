@@ -3,6 +3,8 @@ import axios from 'axios'
 import { BrowserRouter as Router, Routes, Route,  Navigate, BrowserRouter, Link} from "react-router-dom";
 import Schedule from '../schedule/Schedule';
 import "./Exerciselist.css"
+import {Nav,NavLink,Bars,NavMenu,NavBtn,NavBtnLink,} from '../NavbarElements'
+import NavigationBar from '../navigationbar/NavigationBar';
 
 
 var listOfExercises = []
@@ -64,8 +66,13 @@ addExerciseToList(exercise, props){
 
 render(props){
     return(
+        
         <div>
-              <Link to={newTo} >
+                <NavigationBar />
+              <Link to={{
+                  pathname: "/Schedule",
+                  state: {eList: "listOfExercises"}
+              }} >
          <button >Make Your Schedule</button>
          </Link><br/><br/><br/>
             {/* <button onClick={useEffect((()=>{
@@ -82,7 +89,7 @@ render(props){
                     </div>
                     </div>
                     ) })}
-            
+
         </div>
     )
 
@@ -93,7 +100,7 @@ render(props){
 
 const newTo = {
     pathname: "/Schedule",
-    param: listOfExercises
+    state: "listOfExercises"
 
 };
 

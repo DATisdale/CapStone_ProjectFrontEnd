@@ -12,7 +12,7 @@ import { Switch } from '@mui/material';
 import LandingPage from './components/LandingPage/LandingPage';
 import Exerciselist from './components/exerciselist/Exerciselist'
 import Userprofile from './components/userprofile/Userprofile'
-
+import {Nav,NavLink,Bars,NavMenu,NavBtn,NavBtnLink,} from './components/NavbarElements'
 
 
 class App extends Component{
@@ -39,7 +39,7 @@ render(){
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/Register" element={<Register />} />
-        <Route path="/exerciseList" element={<Exerciselist />} />
+        <Route path="/exerciseList" element={<Exerciselist /> } />
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/Userprofile" element={<Userprofile />} />
 
@@ -54,3 +54,4 @@ render(){
 }
 }
 export default App
+

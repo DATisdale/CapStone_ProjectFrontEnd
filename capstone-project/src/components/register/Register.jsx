@@ -39,7 +39,7 @@ return(
         <input value ={email} onChange={(event)=> setEmail(event.target.value)} type = 'text'/>
         <br/>
         <label>Password</label>
-        <input value={password} onChange={(event)=>setPassword(event.target.value)} type = 'text'/>
+        <input value={password} onChange={(event)=>setPassword(event.target.value)} type = 'password'/>
         <br/>
         <label>Height</label>
         <input value={height} onChange={(event)=>setHeight(event.target.value)} type = 'text'/>

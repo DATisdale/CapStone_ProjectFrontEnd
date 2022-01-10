@@ -1,35 +1,34 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+import {Nav,NavLink,Bars,NavMenu,NavBtn,NavBtnLink,} from '../NavbarElements'
 
 
 
 
-const NavigationBar = ({user}) => {
+const NavigationBar = () => {
     return(
-        <div>
-            {user && <h4>Welcome {user.username}</h4>}
-            <ul>
-                <li>
-                    <Link to='/'>Home</Link>
-                </li>
-                {!user &&
-                <React.Fragment>
-                    <li>
-                        <Link to ='/register'>Register</Link>
-                    </li>
-                    <li>
-                        <Link to ='.login'>Login</Link>
-                    </li>
-                    </React.Fragment>
-                    }
-                    {user &&
-                    <React.Fragment>
-                    <li>
-                        <Link to= '/logout'>Logoout</Link>
-                    </li>    
-                    </React.Fragment>}
-            </ul>
-        </div>
-    )
-}
+	<>
+	<Nav>
+		<Bars />
+
+		<NavMenu>
+		<NavLink to='/Schedule' activeStyle>
+			Schedule
+		</NavLink>
+		<NavLink to='/Userprofile' activeStyle>
+			User Profile
+		</NavLink>
+		<NavLink to='/Exerciselist' activeStyle>
+			Exercise List
+		</NavLink>
+		{/* Second Nav */}
+		{/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
+		</NavMenu>
+
+	</Nav>
+	</>
+);
+};
+
+
+
 export default NavigationBar

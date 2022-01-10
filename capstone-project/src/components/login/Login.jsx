@@ -26,7 +26,7 @@ function Login(props){
       
         console.log(response.data);
         localStorage.setItem('token', response.data)
-        window.location = '/exerciseList';
+        window.location = '/Schedule';
       
     }
   
@@ -34,12 +34,12 @@ function Login(props){
             <form className="signup" onSubmit={handlesubmit}>
               <h1>Sign In</h1><br /><br />
               <label>Username</label>
-              <input  onChange={(event) => getEmail(event.target.value)} type='text' />
+              <input  onChange={(event) => getEmail(event.target.value)} type='text' defaultValue={"jjvega@devcodecamp.com"} />
       
               <label>Password</label>
-              <input  onChange={(event) => getPassword(event.target.value)} type='text' /> 
+              <input  onChange={(event) => getPassword(event.target.value)} type='password' defaultValue={"BillyBobWins"} /> 
               <br />         
-              <button type='submit'>Log in</button>
+              <button type='submit' class='landingP'>Log in</button>
               <Button href="/Register" variant="text">Signup</Button>
               <br/>
             </form>
