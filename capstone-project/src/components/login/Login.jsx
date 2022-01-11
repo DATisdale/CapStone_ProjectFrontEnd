@@ -24,8 +24,9 @@ function Login(props){
 
       let response = await axios.post(`http://localhost:5000/api/users/login`, getUser);
       
-        console.log(response.data);
+        console.log(response);
         localStorage.setItem('token', response.data)
+        localStorage.setItem('username', getUser.email)
         window.location = '/Schedule';
       
     }
@@ -37,7 +38,7 @@ function Login(props){
               <input  onChange={(event) => getEmail(event.target.value)} type='text' defaultValue={"jjvega@devcodecamp.com"} />
       
               <label>Password</label>
-              <input  onChange={(event) => getPassword(event.target.value)} type='password' defaultValue={"BillyBobWins"} /> 
+              <input  onChange={(event) => getPassword(event.target.value)} type='text' defaultValue={"BillyBobWins"} /> 
               <br />         
               <button type='submit' class='landingP'>Log in</button>
               <Button href="/Register" variant="text">Signup</Button>

@@ -1,253 +1,264 @@
-import React,{useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import "./Schedule.css";
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
 import NavigationBar from '../navigationbar/NavigationBar';
 import Calendar from 'react-calendar';
+import Modal from 'react-modal';
 import Alert from '../alert/Alert';
+const schedule = require('node-schedule')
+
+// Prompt them every new day 
+
+// If the user has exercises for the previous day, then we can prompt the user to copy over the previous day's exercises (and maybe even let them have the option of increasing the weight and reps)
+
 
 
 //import { Login } from '@mui/icons-material';
 
-var selectedMonth;
-var selectedDate;
-var selectedDay;
-var selectedYear;
-var newExercise = [];
-var newDisplayE = [];
-var display = false;
-function Schedule(props){
-    let daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-    console.log("***********************************")
-    console.log(props)
-    
+function Schedule(props) {
 
-    const [value, onChange] = useState(new Date());
-    const [newDisplayExercises, changeList] = useState({
-        "exercise": "",
-        "month": "",
-        "date": "",
-        "year": "",
-        "weight": ""
+    const config = {
+        headers: {
+            'x-auth-token': localStorage.getItem('token')
+        }
+    }
+
+
+
+    const [currentDate, setCurrentDate] = useState(new Date());
+    const [exercises, setExercises] = useState([]);
+
+    const [isPrompt, setIsPrompt] = useState(localStorage.getItem('prompt') || false);
+    const [isOpen, setIsOpen] = useState(false);
+
+    const [newDisplayExercises, setNewDisplayExercises] = useState({
+        "name": "",
+        "date": new Date(),
+        "reps": 0,
+        "weight": 0
     });
 
-    function sendDates(value){
-        selectedDate = value.getDate();
-        selectedYear = value.getYear() + 1900;
+    // Grab any existing exercises created by the user from the backend
+    useEffect(() => {
+        const getExercises = async () => {
+            const res = await axios.get('http://localhost:5000/api/workouts', config)
+            console.log('exercises for this user', res);
+            setExercises(res.data)
+        }
+        getExercises()
 
-        switch(value.getDay()){
-            case 0:
-                selectedDay = "Sunday";
-                break;
-                case 1:
-                selectedDay = "Monday";
-                break;
-                case 2:
-                selectedDay = "Tuesday";
-                break;
-                case 3:
-                selectedDay = "Wednesday";
-                break;
-                case 4:
-                selectedDay = "Thursday";
-                break;
-                case 5:
-                selectedDay = "Friday";
-                break;
-                case 6:
-                selectedDay = "Saturday";
-                break;
+        const last_visited = localStorage.getItem('last_visited') ? JSON.parse(localStorage.getItem('last_visited')) : null;
+        console.log('last visited', last_visited);
+        if (!last_visited) {
+            localStorage.setItem('prompt', true);
+            setIsPrompt(true);
+            localStorage.setItem('last_visited', JSON.stringify(new Date()));
+        }
+        if (last_visited && !compareDates(new Date(last_visited), new Date())) {
+            localStorage.setItem('prompt', true);
+            setIsPrompt(true);
+            localStorage.setItem('last_visited', JSON.stringify(new Date()));
         }
 
-        switch(value.getMonth()){
-            case 0:
-                selectedMonth = "January";
-                break;
-                case 1:
-                selectedMonth = "February";
-                break;
-                case 2:
-                selectedMonth = "March";
-                break;
-                case 3:
-                selectedMonth = "April";
-                break;
-                case 4:
-                selectedMonth = "May";
-                break;
-                case 5:
-                selectedMonth = "June";
-                break;
-                case 6:
-                selectedMonth = "July";
-                break;
-                case 7:
-                selectedMonth = "August";
-                break;
-                case 8:
-                selectedMonth = "September";
-                break;
-                case 9:
-                selectedMonth = "October";
-                break;
-                case 10:
-                selectedMonth = "November";
-                break;
-                case 11:
-                selectedMonth = "December";
-                break;
-                default:
-                selectedMonth = "";
-                break;
+
+
+    }, [])
+
+    useEffect(() => {
+        if (exercises.length > 0 && isPrompt === true) {
+            var oneWeekAgo = new Date();
+            oneWeekAgo.setDate(oneWeekAgo.getDate() - 7)
+            console.log('one week ago', oneWeekAgo)
+            const exists = exercises.some(exercise => {
+                if (compareDates(oneWeekAgo, new Date(exercise.date))) {
+
+                    return true;
+                }
+                return false;
+            })
+            if (exists) {
+                setIsOpen(true)
+            }
+            console.log('exists', exists)
 
         }
+
+    }, [exercises, isPrompt])
+
+
+
+    function onChange(e) {
+
+        setNewDisplayExercises({ ...newDisplayExercises, [e.target.name]: e.target.value });
     }
 
-    function addExercise(exerciseAdded, weightAdded){
-        let exerciseArray = {
-            "exercise": exerciseAdded,
-            "month": selectedMonth,
-            "date": selectedDate,
-            "year": selectedYear,
-            "weight": weightAdded
-
-        }
-        newExercise.push(exerciseArray)
-
+    async function onSubmit(e) {
+        e.preventDefault();
+        const res = await axios.post('http://localhost:5000/api/workouts/createworkout', newDisplayExercises, config);
+        console.log('created a new exercise', res);
+        setExercises([...exercises, res.data]);
     }
 
-
-    function newList(){
-        //changeList(newDisplayExercises = []);
-        newDisplayE = [];
-        for(var x=0;x < newExercise.length;x++){
-        if(display === true && newExercise[x].date===selectedDate && newExercise[x].month === selectedMonth && newExercise[x].year === selectedYear){
-           // changeList(newDisplayExercises.push(newExercise[x].exercise))
-            newDisplayE.push(newExercise[x].exercise + " : "+newExercise[x].weight)
-            console.log(newExercise[x].exercise)
-        }
-        console.log(selectedDate)
-        console.log(selectedMonth)
-        console.log(selectedYear)
-        console.log(changeList)
-
-
+    function setDate(date) {
+        setCurrentDate(date)
+        setNewDisplayExercises({ ...newDisplayExercises, date: date });
     }
-    changeList(newDisplayE);
-    console.log(newDisplayExercises)
-    if(display === false){
-        console.log("False");
-        changeList("");
+    function compareDates(d1, d2) {
+        return d1.getFullYear() === d2.getFullYear() &&
+            d1.getMonth() === d2.getMonth() &&
+            d1.getDate() === d2.getDate()
+    }
 
+    const exercisesByDate = exercises.filter(exercise => {
+        const exerciseDate = new Date(exercise.date);
+
+        if (compareDates(exerciseDate, currentDate)) {
+            return true;
+        } else {
+            return false;
+        }
+    })
+
+
+    async function deleteExercise(exerciseId) {
+        const res = await axios.delete(`http://localhost:5000/api/workouts/deleteWorkout/${exerciseId}`, config)
+        console.log('deleted exercise', res);
+        const temp = exercises.filter(exercise => {
+            if (exercise._id === exerciseId) {
+                return false;
+            } else {
+                return true;
+            }
+        })
+        setExercises(temp);
 
     }
 
-    console.log(display)
+    console.log('1', exercisesByDate)
+    const copyExercises = async () => {
+        var oneWeekAgo = new Date();
+        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7)
+        const lastWeeksExercises = exercises.filter(exercise => {
+            if (compareDates(oneWeekAgo, new Date(exercise.date))) {
+                return true;
+            }
+            return false;
+        })
+            .map(exercise => {
+                exercise.date = new Date();
+
+                return {
+                    name: exercise.name,
+                    date: exercise.date,
+                    weight: exercise.weight,
+                    reps: exercise.reps,
+                    userId: exercise.userId
+                };
+            })
+        const res = await axios.post('http://localhost:5000/api/workouts/copy', { exercises: lastWeeksExercises }, config)
+        console.log('copied exercisses', res.data);
+        setExercises([...exercises, res.data]);
+    }
+
+    return (
+
+        <div>
+
+            <NavigationBar />
 
 
-}
-
-function onClickCalls(enterEx, enterW){
-    display = true
-    newDisplayE=[];
-    changeList(newDisplayE);
-
-    addExercise(enterEx, enterW);
-    newList();
-
-}
-
-function onCalendarClick(){
-    display = false
-    console.log("log")
-    changeList([""]);
-    newList();
-
-}
-
-
-   
-          return (
-
-            <div>
-                
-                <NavigationBar />
-
-                <table>
-                    <tr>
-                        <td>
             <Calendar
-              onChange={onChange}
-              value={value}
-              onClickDay={(value => sendDates(value))}
-              onClick={()=>onCalendarClick()}
+                onChange={setDate}
             />
-            </td>
-            <td>
-            <div class='exerciseFont'> <h1>{selectedDay} {selectedMonth} {selectedDate}, {selectedYear}</h1> </div> <br/>
-                <hr/>
-                {newDisplayE.map(eList =>{
-                    return(
-                       <div class='exerciseFont'> <h2>{eList}</h2> </div>
-                    )
-                })}
-                <br/>
-                <input type="text" id="enterExercise" placeholder="Enter Exercise.." title="Type in a category"></input><br/>
-                <input type="text" id="enterWeight" placeholder="Enter Weight.." title="Type in a category"></input>
-                <button id="submitExercise" onClick={()=>onClickCalls(document.getElementById("enterExercise").value, document.getElementById("enterWeight").value)}>submit</button>
 
 
-            </td>
-            </tr>
+            <hr />
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Weight</th>
+                        <th>Reps</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {exercisesByDate.map(exercise => {
+                        return (
+                            <tr class='exerciseContainer'>
+                                <td>{exercise.name}</td>
+                                <td>{exercise.weight}</td>
+                                <td>{exercise.reps}</td>
+                                <td><button onClick={() => deleteExercise(exercise._id)} >Delete</button></td>
+                            </tr>
+                        )
+                    })}
+                </tbody>
+
             </table>
-          </div>
+
+            <br />
+            <form onSubmit={onSubmit}>
+                <input type="text" name="name" placeholder="Enter Exercise.." title="Type in a category" onChange={onChange} /><br />
+                <input type="text" name="weight" placeholder="Enter Weight.." title="Type in a category" onChange={onChange} />
+                <input type="text" name="reps" placeholder="Enter Weight.." title="Type in a category" onChange={onChange} />
+
+                <button id="submitExercise" type="submit">submit</button>
+
+            </form>
+
+
+            <Alert setIsPrompt={setIsPrompt} copyExercises={copyExercises} isOpen={isOpen} setIsOpen={setIsOpen} />
+
+        </div>
 
 
 
         //    <div>
 
 
-                   /* <NavigationBar />
-               <form>
-                   <table>
-                       <tr>
-                          <th><label>Monday</label></th><th><label>Tuesday</label></th><th><label>Wednesday</label></th><th><label>Thursday</label></th><th><label>Friday</label></th><th><label>Saturday</label></th><th><label>Sunday</label></th>
-                       </tr>
-                       <tr>
-                   <td><select name = "Monday">
-                       <option value="None" selected>None</option><option value="Arms">Arms</option><option value="Back">Back</option><option value="Legs">Legs</option><option value="Shoulders">Shoulders</option><option value="Cardio">Cardio</option>
-                   </select></td>
-                   <td><select name = "Tuesday">
-                       <option value="None" selected>None</option><option value="Arms">Arms</option><option value="Back">Back</option><option value="Legs">Legs</option><option value="Shoulders">Shoulders</option><option value="Cardio">Cardio</option>
-                   </select></td>
-                   <td><select name = "Wednesday">
-                       <option value="None" selected>None</option><option value="Arms">Arms</option><option value="Back">Back</option><option value="Legs">Legs</option><option value="Shoulders">Shoulders</option><option value="Cardio">Cardio</option>
-                   </select></td>
-                   <td><select name = "Thursday">
-                       <option value="None" selected>None</option><option value="Arms">Arms</option><option value="Back">Back</option><option value="Legs">Legs</option><option value="Shoulders">Shoulders</option><option value="Cardio">Cardio</option>
-                   </select></td>
-                   <td><select name = "Friday">
-                       <option value="None" selected>None</option><option value="Arms">Arms</option><option value="Back">Back</option><option value="Legs">Legs</option><option value="Shoulders">Shoulders</option><option value="Cardio">Cardio</option>
-                   </select></td>
-                   <td><select name = "Saturday">
-                       <option value="None" selected>None</option><option value="Arms">Arms</option><option value="Back">Back</option><option value="Legs">Legs</option><option value="Shoulders">Shoulders</option><option value="Cardio">Cardio</option>
-                   </select></td>
-                   <td><select name = "Sunday">
-                       <option value="None" selected>None</option><option value="Arms">Arms</option><option value="Back">Back</option><option value="Legs">Legs</option><option value="Shoulders">Shoulders</option><option value="Cardio">Cardio</option>
-                   </select></td>
+        /* <NavigationBar />
+    <form>
+        <table>
+            <tr>
+               <th><label>Monday</label></th><th><label>Tuesday</label></th><th><label>Wednesday</label></th><th><label>Thursday</label></th><th><label>Friday</label></th><th><label>Saturday</label></th><th><label>Sunday</label></th>
+            </tr>
+            <tr>
+        <td><select name = "Monday">
+            <option value="None" selected>None</option><option value="Arms">Arms</option><option value="Back">Back</option><option value="Legs">Legs</option><option value="Shoulders">Shoulders</option><option value="Cardio">Cardio</option>
+        </select></td>
+        <td><select name = "Tuesday">
+            <option value="None" selected>None</option><option value="Arms">Arms</option><option value="Back">Back</option><option value="Legs">Legs</option><option value="Shoulders">Shoulders</option><option value="Cardio">Cardio</option>
+        </select></td>
+        <td><select name = "Wednesday">
+            <option value="None" selected>None</option><option value="Arms">Arms</option><option value="Back">Back</option><option value="Legs">Legs</option><option value="Shoulders">Shoulders</option><option value="Cardio">Cardio</option>
+        </select></td>
+        <td><select name = "Thursday">
+            <option value="None" selected>None</option><option value="Arms">Arms</option><option value="Back">Back</option><option value="Legs">Legs</option><option value="Shoulders">Shoulders</option><option value="Cardio">Cardio</option>
+        </select></td>
+        <td><select name = "Friday">
+            <option value="None" selected>None</option><option value="Arms">Arms</option><option value="Back">Back</option><option value="Legs">Legs</option><option value="Shoulders">Shoulders</option><option value="Cardio">Cardio</option>
+        </select></td>
+        <td><select name = "Saturday">
+            <option value="None" selected>None</option><option value="Arms">Arms</option><option value="Back">Back</option><option value="Legs">Legs</option><option value="Shoulders">Shoulders</option><option value="Cardio">Cardio</option>
+        </select></td>
+        <td><select name = "Sunday">
+            <option value="None" selected>None</option><option value="Arms">Arms</option><option value="Back">Back</option><option value="Legs">Legs</option><option value="Shoulders">Shoulders</option><option value="Cardio">Cardio</option>
+        </select></td>
 </tr>
-                   </table>
+        </table>
 
 
 
 
-               </form> */
+    </form> */
 
         //    </div>
-          );
-      }
+    );
+}
 
 
-      
-  export default Schedule;
+
+export default Schedule;
