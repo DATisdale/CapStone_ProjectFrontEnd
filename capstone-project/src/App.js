@@ -13,6 +13,7 @@ import LandingPage from './components/LandingPage/LandingPage';
 import Exerciselist from './components/exerciselist/Exerciselist'
 import Userprofile from './components/userprofile/Userprofile'
 import {Nav,NavLink,Bars,NavMenu,NavBtn,NavBtnLink,} from './components/NavbarElements'
+import Progressionchart from './components/progressionchart/Progressionchart';
 
 
 class App extends Component{
@@ -42,6 +43,7 @@ render(){
         <Route path="/exerciseList" element={<Exerciselist /> } />
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/Userprofile" element={<Userprofile />} />
+        <Route path="/Progressionchart" element={<Progressionchart />} />
 
 
 

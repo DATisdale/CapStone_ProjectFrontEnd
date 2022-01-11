@@ -181,7 +181,7 @@ function Schedule(props) {
                         <th>Name</th>
                         <th>Weight</th>
                         <th>Reps</th>
-                        <th></th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -203,7 +203,7 @@ function Schedule(props) {
             <form onSubmit={onSubmit}>
                 <input type="text" name="name" placeholder="Enter Exercise.." title="Type in a category" onChange={onChange} /><br />
                 <input type="text" name="weight" placeholder="Enter Weight.." title="Type in a category" onChange={onChange} />
-                <input type="text" name="reps" placeholder="Enter Weight.." title="Type in a category" onChange={onChange} />
+                <input type="text" name="reps" placeholder="Enter Reps.." title="Type in a category" onChange={onChange} />
 
                 <button id="submitExercise" type="submit">submit</button>
 
