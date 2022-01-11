@@ -14,7 +14,7 @@ const Progressionchart = () => {
                     labels: ['exercise1', 'Exercise2', 'Exercise3', 'Exercise4', 'Exercise5', 'Exercise6'],
                     datasets: [
                         {
-                            label: 'Strength Progression',
+                            label: 'starting out',
                             data: [100, 135, 35, 225, 35, 10],
                             backgroundColor: ['rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
@@ -33,7 +33,7 @@ const Progressionchart = () => {
                             borderWidth: 1
                         },
                         {
-                            label: 'Quantity',
+                            label: 'Strength Progression',
                             data: [100, 104, 67, 508, 900, 50],
                             backgroundColor: 'Orange',
                             borderColor: 'red',

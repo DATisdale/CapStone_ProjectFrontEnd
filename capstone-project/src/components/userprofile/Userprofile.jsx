@@ -32,10 +32,12 @@ const Userprofile = () => {
     return <div>
         <NavigationBar />
         <div className="card">
-            <h1>{name}</h1>
-            <p>User Stats</p>
-            <p>{height}</p>
-            <p>{weight}</p>
+            <div class="container">
+                <h1>{name}</h1>
+                <p>User Stats</p>
+                <p>{height}</p>
+                <p>{weight}</p>
+            </div>
         </div>
     </div>
 
