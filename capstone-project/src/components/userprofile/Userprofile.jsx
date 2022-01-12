@@ -31,13 +31,11 @@ const Userprofile = () => {
     }, []);
     return <div>
         <NavigationBar />
-        <div className="card">
-            <div class="container">
-                <h1>{name}</h1>
-                <p>User Stats</p>
-                <p>{height}</p>
-                <p>{weight}</p>
-            </div>
+        <div style={{ 'color': 'white' }} className="card">
+            <h1>{name}</h1>
+            <p>User Stats</p>
+            <p>Height:{height}</p>
+            <p>Weight:{weight}</p>
         </div>
     </div>
 

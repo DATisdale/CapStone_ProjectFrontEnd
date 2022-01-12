@@ -14,6 +14,7 @@ import Exerciselist from './components/exerciselist/Exerciselist'
 import Userprofile from './components/userprofile/Userprofile'
 import {Nav,NavLink,Bars,NavMenu,NavBtn,NavBtnLink,} from './components/NavbarElements'
 import Progressionchart from './components/progressionchart/Progressionchart';
+import Logout from './components/logout/Logout';
 
 
 class App extends Component{
@@ -44,7 +45,7 @@ render(){
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/Userprofile" element={<Userprofile />} />
         <Route path="/Progressionchart" element={<Progressionchart />} />
-
+        <Route path="/Logout" element={<Logout />} />
 
 
       </Routes>

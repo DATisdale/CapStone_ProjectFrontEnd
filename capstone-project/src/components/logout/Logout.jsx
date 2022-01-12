@@ -4,8 +4,9 @@ import "./Logout.css"
 export default function Logout() {
     const logOutBtn = () => {
         localStorage.removeItem("token");
-        window.location.assign("/"); 
+        window.location.assign("/Login");
     }
-  return(
-      <button onClick={() => logOutBtn()}>log out </button>
-  )};
+    return (
+        <button onClick={() => logOutBtn()}>log out </button>
+    )
+};
