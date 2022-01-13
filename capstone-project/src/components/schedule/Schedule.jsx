@@ -188,9 +188,9 @@ function Schedule(props) {
                     {exercisesByDate.map(exercise => {
                         return (
                             <tr class='exerciseContainer'>
-                                <td>{exercise.name}</td>
-                                <td>{exercise.weight}</td>
-                                <td>{exercise.reps}</td>
+                                <td style={{ color: 'orangered' }}>{exercise.name}</td>
+                                <td style={{ color: 'orangered' }}>{exercise.weight}</td>
+                                <td style={{ color: 'orangered' }}>{exercise.reps}</td>
                                 <td><button onClick={() => deleteExercise(exercise._id)} >Delete</button></td>
                             </tr>
                         )
