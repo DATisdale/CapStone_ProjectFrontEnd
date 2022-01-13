@@ -43,7 +43,7 @@ function Login(props) {
 
       <label>Password</label>
       <input onChange={(event) => getPassword(event.target.value)} type={passwordShown ? "text" : "password"} />
-      <button onClick={togglePassword}>Show Password</button>
+      {/* <button onClick={togglePassword}>Show Password</button> */}
       <br />
       <button type='submit' class='landingP'>Log in</button>
       <Button href="/Register" variant="text">Signup</Button>
