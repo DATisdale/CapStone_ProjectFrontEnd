@@ -16,6 +16,7 @@ import {Nav,NavLink,Bars,NavMenu,NavBtn,NavBtnLink,} from './components/NavbarEl
 import Progressionchart from './components/progressionchart/Progressionchart';
 import Logout from './components/logout/Logout';
 import ExerciseProgress from './components/ExerciseProgress/ExerciseProgress';
+import RepProgress from './components/RepProgress/RepProgress';
 
 
 class App extends Component{
@@ -38,7 +39,7 @@ render(){
   const user =this.state.user;
   return(
     <BrowserRouter >
-    
+
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
@@ -47,6 +48,7 @@ render(){
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/Userprofile" element={<Userprofile />} />
         <Route path="/Progressionchart" element={<ExerciseProgress />} />
+        <Route path="/RepProgress" element={<RepProgress />} />
         <Route path="/Logout" element={<Logout />} />
 
 

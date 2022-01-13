@@ -23,8 +23,12 @@ const NavigationBar = () => {
 					<NavLink to='/Progressionchart' activeStyle>
 						Progression Chart
 					</NavLink>
-					{/* Second Nav */}
-					{/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
+					<NavLink to='/RepProgress' activeStyle>
+						Rep Progress
+					</NavLink>
+					<NavLink to='/Logout' activeStyle>
+						Logout
+					</NavLink>
 				</NavMenu>
 
 			</Nav>
