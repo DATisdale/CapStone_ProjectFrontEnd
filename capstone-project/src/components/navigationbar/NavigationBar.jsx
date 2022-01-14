@@ -10,25 +10,41 @@ const NavigationBar = () => {
 			<Nav>
 				<Bars />
 
+
 				<NavMenu>
-					<NavLink to='/Schedule' activeStyle>
-						Schedule
-					</NavLink>
-					<NavLink to='/Userprofile' activeStyle>
-						User Profile
-					</NavLink>
-					<NavLink to='/Exerciselist' activeStyle>
-						Exercise List
-					</NavLink>
-					<NavLink to='/Progressionchart' activeStyle>
-						Progression Chart
-					</NavLink>
-					<NavLink to='/RepProgress' activeStyle>
-						Rep Progress
-					</NavLink>
-					<NavLink to='/Logout' activeStyle>
-						Logout
-					</NavLink>
+					<table>
+						<tr>
+							<th>
+								<NavLink to='/Schedule' activeStyle>
+									Schedule
+								</NavLink>
+							</th>
+							<th>
+								<NavLink to='/Userprofile' activeStyle>
+									User Profile
+								</NavLink>
+							</th>
+							<th>
+								<NavLink to='/Exerciselist' activeStyle>
+									Exercise List
+								</NavLink>
+							</th>
+							<th>
+								<NavLink to='/Progressionchart' activeStyle>
+									Progression Chart
+								</NavLink>
+							</th>
+							<th>
+								<NavLink to='/RepProgress' activeStyle>
+									Rep Progress
+								</NavLink>
+							</th><th width="1000px"></th><th className='logoutCell'>
+								<NavLink to='/Logout' activeStyle>
+									Logout
+								</NavLink>
+							</th>
+						</tr>
+					</table>
 				</NavMenu>
 
 			</Nav>

@@ -32,10 +32,10 @@ const Userprofile = () => {
     return <div>
         <NavigationBar />
         <div style={{ 'color': 'white' }} className="card">
-            <h1>{name}</h1>
-            <p>User Stats</p>
-            <p>Height:{height}</p>
-            <p>Weight:{weight}</p>
+            <h1 className="profileFont">{name}</h1>
+            <p className="profileFont">User Stats</p>
+            <p className="profileFont">Height: {height}</p>
+            <p className="profileFont">Weight: {weight}</p>
         </div>
     </div>
 

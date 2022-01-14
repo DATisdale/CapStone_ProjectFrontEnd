@@ -4,6 +4,10 @@ button {
   width: 1.5em;
 }
 
+.enterData {
+  padding-top: 35px;
+}
+
 button#submitExercise {
   padding: 10px 10px;
   width: auto;
@@ -13,13 +17,27 @@ button#submitExercise {
   color: white !important;
 }
 
+.exTable {
+  background-color: white;
+  border-radius: 0px 0px 10px 10px;
+  border-top-color: white !important;
+  border-right-color: white !important;
+  border-bottom-color: grey !important;
+  border-left-color: grey !important;
+}
+
 .react-calendar {
-  width: 350px;
+  width: 550px !important;
   max-width: 100%;
   background: white;
   border: 1px solid black;
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.125em;
+  border-radius: 10px 10px 0px 0px;
+  border-top-color: grey;
+  border-right-color: grey;
+  border-bottom-color: white !important;
+  border-left-color: white !important;
 }
 .react-calendar--doubleView {
   width: 700px;
@@ -135,4 +153,13 @@ table thead th {
   font-size: 15pt;
   border: 1px solid rgb(124, 119, 119);
   width: 10%;
+}
+
+.boxFont {
+  text-align: center !important;
+  padding-bottom: 35px;
+}
+
+.deleteButton {
+  padding-top: 5px;
 }

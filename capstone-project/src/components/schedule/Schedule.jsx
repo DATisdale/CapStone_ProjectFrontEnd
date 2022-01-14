@@ -7,6 +7,7 @@ import NavigationBar from '../navigationbar/NavigationBar';
 import Calendar from 'react-calendar';
 import Modal from 'react-modal';
 import Alert from '../alert/Alert';
+import { textAlign } from '@mui/system';
 const schedule = require('node-schedule')
 
 // Prompt them every new day 
@@ -174,8 +175,7 @@ function Schedule(props) {
             />
 
 
-            <hr />
-            <table>
+            <table className='exTable'>
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -188,10 +188,10 @@ function Schedule(props) {
                     {exercisesByDate.map(exercise => {
                         return (
                             <tr class='exerciseContainer'>
-                                <td style={{ color: 'orangered' }}>{exercise.name}</td>
-                                <td style={{ color: 'orangered' }}>{exercise.weight}</td>
-                                <td style={{ color: 'orangered' }}>{exercise.reps}</td>
-                                <td><button onClick={() => deleteExercise(exercise._id)} >Delete</button></td>
+                                <td className='boxFont' style={{ color: 'orangered' }}>{exercise.name}</td>
+                                <td className='boxFont' style={{ color: 'orangered' }}>{exercise.weight}</td>
+                                <td className='boxFont' style={{ color: 'orangered' }}>{exercise.reps}</td>
+                                <td className='deleteButton'><button onClick={() => deleteExercise(exercise._id)} >Delete</button></td>
                             </tr>
                         )
                     })}
@@ -200,7 +200,7 @@ function Schedule(props) {
             </table>
 
             <br />
-            <form onSubmit={onSubmit}>
+            <form className='enterData' onSubmit={onSubmit}>
                 <input type="text" name="name" placeholder="Enter Exercise.." title="Type in a category" onChange={onChange} /><br />
                 <input type="text" name="weight" placeholder="Enter Weight.." title="Type in a category" onChange={onChange} />
                 <input type="text" name="reps" placeholder="Enter Reps.." title="Type in a category" onChange={onChange} />
@@ -212,7 +212,7 @@ function Schedule(props) {
 
             <Alert setIsPrompt={setIsPrompt} copyExercises={copyExercises} isOpen={isOpen} setIsOpen={setIsOpen} />
 
-        </div>
+        </div >
 
 
 

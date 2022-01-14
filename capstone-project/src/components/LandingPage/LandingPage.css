@@ -1,7 +1,11 @@
 .landingP {
   width: auto !important;
   padding: 12px 45px !important;
+  margin: 0px 22px;
 }
 body {
   background-image: url(../img/risen-wang-20jX9b35r_M-unsplash.jpg);
+}
+.regLog {
+  padding: 22vw 0px 0px 0px;
 }

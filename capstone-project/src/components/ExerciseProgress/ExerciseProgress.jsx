@@ -59,7 +59,7 @@ const ExerciseProgress = () => {
     if (exercisesByName[currentExercise]) {
         exerciseData.labels = exercisesByName[currentExercise].map(exercise => new Intl.DateTimeFormat('en-US').format(new Date(exercise.date)));
         exerciseData.datasets[0].data = exercisesByName[currentExercise].map(exercise => exercise.weight);
-        exerciseData.datasets[1].data = exercisesByName[currentExercise].map(exercise => exercise.reps);
+        // exerciseData.datasets[1].data = exercisesByName[currentExercise].map(exercise => exercise.reps);
     }
     console.log('data', exerciseData);
     console.log(exercises);

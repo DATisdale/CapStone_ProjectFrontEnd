@@ -1,14 +1,22 @@
 .card {
-  background-color: transparent;
-  box-shadow: 0 4px 8px 0 rgba(255, 72, 0, 0.2);
+  background-color: rgb(255, 255, 255, 4%);
+  box-shadow: 0 4px 8px 0 rgba(255, 72, 0, 0.3);
   max-width: 300px;
   margin: auto;
   text-align: center;
   width: 300%;
   height: 200%;
+  border: white 6px !important;
 }
 
 .title {
   color: rgb(236, 226, 226);
   font-size: 18px;
+}
+
+.profileFont {
+  font-size: 18px;
+}
+h1.profileFont {
+  font-size: 40px !important;
 }

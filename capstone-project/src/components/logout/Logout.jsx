@@ -8,7 +8,7 @@ export default function Logout() {
         window.location.assign("/");
     }
     return (
-        <div >
+        <div>
             <NavigationBar />
             <button onClick={() => logOutBtn()}>Are you sure you want to log out? </button>
         </div>
