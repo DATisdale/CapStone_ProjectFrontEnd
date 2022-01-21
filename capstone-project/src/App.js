@@ -10,7 +10,7 @@ import { appBarClasses } from '@mui/material';
 import Schedule from './components/schedule/Schedule';
 import { Switch } from '@mui/material';
 import LandingPage from './components/LandingPage/LandingPage';
-import Exerciselist from './components/exerciselist/Exerciselist'
+import Exerciselist from './components/exerciselist/Exerciselist';
 import Userprofile from './components/userprofile/Userprofile'
 import {Nav,NavLink,Bars,NavMenu,NavBtn,NavBtnLink,} from './components/NavbarElements'
 import Progressionchart from './components/progressionchart/Progressionchart';
